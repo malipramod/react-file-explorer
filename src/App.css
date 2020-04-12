@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.Container{
+  display:flex;
+}
+
+.Fixed{
+  width: 30%;
+}
+.FlexItem{
+  flex-grow: 1;
+}
+
+.Pointer{
+  cursor: pointer;
+}
+
+.RemoveListStyle{
+  list-style-type: none;
+}
+
+.NotExpanded {
+  display: none;
+}
+
+.Expanded {
+  display: block;
+}
+
+.Preview{
+  border: 1px solid black;
+  height: 100%;
+  margin: 5px;
+}
+
+.Directory{
+  display: inline-block;
+  margin: 10px;
+}
+
+.BackButton{
+  margin: 5px;
+  cursor: pointer;
+}
