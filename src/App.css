@@ -40,7 +40,12 @@
   margin: 10px;
 }
 
-.BackButton{
+.ActionButton{
+  margin: 5px;
+  cursor: pointer;
+}
+
+.CreateActions{
   margin: 5px;
   cursor: pointer;
 }

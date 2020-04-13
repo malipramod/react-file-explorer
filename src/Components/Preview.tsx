@@ -15,21 +15,21 @@ const Preview: React.SFC<PreviewProps> = ({ directory, workingDirectoryId, openD
     return (
         <div>
             {
-                workingDirectoryId !== "0" ? <div className="BackButton">
-                    <FontAwesomeIcon icon={faArrowLeft} onClick={() => goBack(workingDirectoryId)} />
+                workingDirectoryId !== "0" ? <div >
+                    <FontAwesomeIcon size="lg" title="Back" className="ActionButton" icon={faArrowLeft} onClick={() => goBack(workingDirectoryId)} />&nbsp;                    
                 </div> : null
             }
             <div className="Preview">
-                {directory ?
+                {directory && directory.length > 0 ?
                     directory.map(dir =>
                         <div key={dir.id} className={`Directory ${dir.isDirectory ? "Pointer" : ""}`}>
                             {
                                 dir.isDirectory ?
                                     <div onClick={() => openDirectory(dir.id)}>
-                                        <FontAwesomeIcon icon={faFolder} /> {dir.title}
+                                        <FontAwesomeIcon size="2x" icon={faFolder} /> {dir.title}
                                     </div> :
                                     <div>
-                                        <FontAwesomeIcon icon={faFile} /> {dir.title}
+                                        <FontAwesomeIcon size="2x" icon={faFile} /> {dir.title}
                                     </div>
                             }&nbsp;
                             

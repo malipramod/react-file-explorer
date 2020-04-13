@@ -59,9 +59,11 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
 
     goBack(id: string) {
         const clonedArray = [...this.state.directoryHistoy]
-        const [previousHistoy] = clonedArray.splice(-1);
-        const restOfHistory = clonedArray.splice(-1, 1);
-        this.setState({ previewDirectoryState: previousHistoy, workingDirectoryId: id, directoryHistoy: restOfHistory });
+        const [previousHistoy] = clonedArray.slice(-1);
+        const restOfHistory = clonedArray.slice(0, clonedArray.length - 1);
+        this.setState({ previewDirectoryState: previousHistoy, directoryHistoy: restOfHistory },()=>{
+            this.setState({ workingDirectoryId: restOfHistory.length === 0 ? "0" : previousHistoy[previousHistoy.length - 1].id });
+        });
 
     }
 
@@ -69,9 +71,13 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
         let clonedDirectoryHistoy = [...this.state.directoryHistoy]
         clonedDirectoryHistoy.push(this.state.previewDirectoryState);
 
-        this.setState({ directoryHistoy: clonedDirectoryHistoy, workingDirectoryId: id }, () => {
+        this.setState({ directoryHistoy: clonedDirectoryHistoy }, () => {
             const updatedPreviewDirectoryState: Array<DirectoryModel> = openDirectory(id, this.state.previewDirectoryState);
-            this.setState({ previewDirectoryState: updatedPreviewDirectoryState });
+            this.setState({ previewDirectoryState: updatedPreviewDirectoryState }, () => {
+                if (updatedPreviewDirectoryState.length > 0) {
+                    this.setState({workingDirectoryId: updatedPreviewDirectoryState[0].id})
+                }
+            });
         })
     }
 
