@@ -1,5 +1,7 @@
 import DirectoryModel from './Model/DirctoryModel';
-
+/**
+ * Intial Directory data
+ */
 export const directoryTreeData: Array<DirectoryModel> = [{
     "id": "0",
     "title": "root",

@@ -5,6 +5,13 @@ import DirectoryModel from '../Model/DirctoryModel';
 import File from './File';
 import '../App.css';
 
+/**
+ * Props recieved by Directory component 
+ * Directory: Current Directory
+ * toggleVisiblity(id): Shows/Hides directory
+ * createDir(id): Creates Directory
+ * createFile(id): Creates a file
+ */
 interface DirectoryProps {
     directory: DirectoryModel;
     toggleVisiblity: (id: string) => void;
@@ -12,6 +19,11 @@ interface DirectoryProps {
     createFile: (id: string) => void;
 }
 
+/**
+ * Displays Directory or File component depending on type 
+ * Reuses same component to child directories and File Component
+ * @param DirectoryProps See interface #15
+ */
 const Directory: React.SFC<DirectoryProps> = ({ directory, toggleVisiblity, createDir, createFile }) => (
     <ul className='RemoveListStyle'>
         <li className="Pointer" >

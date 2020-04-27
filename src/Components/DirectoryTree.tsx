@@ -5,10 +5,21 @@ import DirectoryModel from '../Model/DirctoryModel';
 import { toggleVisiblity, createDirFile, openDirectory } from '../Util/Utility';
 import '../App.css';
 
+/**
+ * DirectoryTree Props 
+ * directory: All directories
+ */
 interface OwnProps {
     directory: Array<DirectoryModel>
 }
 
+/**
+ * DirectoryTree local state
+ * directoryState: Curret directory state
+ * previewDirectoryState: Current directory state(preview component)
+ * workingDirectoryId: Current directory opened
+ * directoryHistoy: History state for navigation/back
+ */
 interface OwnState {
     directoryState: Array<DirectoryModel>;
     previewDirectoryState: Array<DirectoryModel>;
@@ -16,6 +27,9 @@ interface OwnState {
     directoryHistoy: Array<Array<DirectoryModel>>;
 }
 
+/**
+ * DirectoryTree Component
+ */
 class DirectoryTree extends React.Component<OwnProps, OwnState> {
     constructor(props: any) {
         super(props);
@@ -32,11 +46,19 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
         this.goBack = this.goBack.bind(this);
     }
 
+    /**
+     * Toggles directory's visiblity in Directory Tree
+     * @param id unique directoryId that need to be hidden/shown
+     */
     toggleVisiblity(id: string) {
         const updatedDirectoryState = toggleVisiblity(id, this.state.directoryState);
         this.setState({ directoryState: updatedDirectoryState });
     }
 
+    /**
+     * Create directory
+     * @param id Unique directoryId     
+     */
     createDir(id: string) {
         const dirName = prompt("Directory Name");
         if (!dirName) {
@@ -47,6 +69,10 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
         this.setState({ directoryState: updatedDirectoryState })
     }
     
+    /**
+     * Create file
+     * @param id Unique directoryId     
+     */
     createFile(id: string) {
         const fileName = prompt("File Name");
         if (!fileName) {
@@ -57,7 +83,11 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
         this.setState({ directoryState: updatedDirectoryState });
     }
 
-    goBack(id: string) {
+    /**
+     * Go back to parent directory
+     * Pops last element from history
+     */
+    goBack() {
         const clonedArray = [...this.state.directoryHistoy]
         const [previousHistoy] = clonedArray.slice(-1);
         const restOfHistory = clonedArray.slice(0, clonedArray.length - 1);
@@ -67,6 +97,10 @@ class DirectoryTree extends React.Component<OwnProps, OwnState> {
 
     }
 
+    /**
+     * Opens directory
+     * @param id Unique directoryId
+     */
     openDirectory(id: string) {
         let clonedDirectoryHistoy = [...this.state.directoryHistoy]
         clonedDirectoryHistoy.push(this.state.previewDirectoryState);

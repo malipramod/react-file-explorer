@@ -2,10 +2,12 @@
   text-align: center;
 }
 
+/* Container for app */
 .Container{
   display:flex;
 }
 
+/* 30-70 division of display */
 .Fixed{
   width: 30%;
 }
@@ -16,30 +18,35 @@
 .Pointer{
   cursor: pointer;
 }
-
+/* Removes bullet points from list */
 .RemoveListStyle{
   list-style-type: none;
 }
 
+/* Directory/File hidden */
 .NotExpanded {
   display: none;
 }
 
+/* Directory/File visible */
 .Expanded {
   display: block;
 }
 
+/* Preview window */
 .Preview{
   border: 1px solid black;
   height: 100%;
   margin: 5px;
 }
 
+/* Directory style */
 .Directory{
   display: inline-block;
   margin: 10px;
 }
 
+/* Action button style */
 .ActionButton{
   margin: 5px;
   cursor: pointer;
